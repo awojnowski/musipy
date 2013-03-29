@@ -98,7 +98,7 @@ def main():
             songs.append(song)
             
     if len(songs) == 0:
-        print 'No songs were found matching your search "%s".' % song
+        print 'No songs were found matching your search "%s".' % search_term
         exit(0)
 
     # sort songs by bitrate
