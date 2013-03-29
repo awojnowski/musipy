@@ -65,11 +65,15 @@ class Song:
 
 def main():
 
-    print '### SpeedyApocalypse Song Downloader ###'
+    print '### Welcome to Musi.py ###'
 
     arguments = sys.argv
     del arguments[0]
     search_term = ' '.join(arguments)
+
+    if len(search_term) == 0:
+        print 'Hey bro, we need a search term here.'
+        exit(0)
 
     print 'Searching for song named "%s".' % search_term
 
