@@ -11,7 +11,7 @@ Usage
 Example
 -------
 
-> $ python musi.py radioactive imagine dragons
+> $ python musi.py metric sick muse
 
 Installation
 -------------
