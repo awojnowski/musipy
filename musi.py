@@ -1,11 +1,5 @@
 #!/usr/bin/env python
 
-'''
-    Usage:
-
-    music.py your search term here
-'''
-
 import os
 import re
 import requests
