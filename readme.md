@@ -16,5 +16,5 @@ Example
 Installation
 -------------
 
-1) Download `musi.py`.
-2) Run musi.py by following the example.
+1. Download `musi.py`.
+2. Run musi.py by following the example.
