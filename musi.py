@@ -53,7 +53,7 @@ class Song:
             return False
 
         url = self.URL
-        url = urllib.quote(url)
+        url = urllib.quote(url.encode("utf-8"))
         url = url.replace('%3A//', '://')
         self.URL = url
 
@@ -87,7 +87,7 @@ def main():
 
     response = request.text
     if response.find('The content was removed due to copyrights owners\' request.') != -1:
-        print 'Content unavailable.  The content was removed due to the copyright owners\' request.'
+        print 'Content unavailable.  The content was removed\ due to the copyright owners\' request.'
         exit(0)
 
     raw_songs = response.split('<div id="song_html"')
@@ -101,7 +101,7 @@ def main():
 
         if result:
             songs.append(song)
-            
+
     if len(songs) == 0:
         print 'No songs were found matching your search "%s".' % search_term
         exit(0)
