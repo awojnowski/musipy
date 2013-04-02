@@ -9,6 +9,13 @@ import urllib
 download_path = '/Users/Aaron/Downloads/'
 itunes_path = '/Applications/iTunes.app/'
 
+possible_arguments = [
+   '-r', # removes remixes
+    '--noremix'
+];
+
+include_remixes = True
+
 
 class Song:
 
@@ -18,12 +25,12 @@ class Song:
     duration = None
     size = None
 
-    def __init__(self, input=None):
+    def __init__(self, input=None, parse_remix=True):
 
         if input:
             self.parse_song(input)
 
-    def parse_song(self, input):
+    def parse_song(self, input, parse_remix=True):
 
         # remove newlines and tabs
         input = input.replace('\t', '')
@@ -60,6 +67,10 @@ class Song:
         duration = self.duration
         self.duration = duration.replace(' ', '')
 
+        if not parse_remix:
+            if self.name.lower().find("remix") != -1:
+                return False
+
         return True
 
 
@@ -69,13 +80,20 @@ def main():
 
     arguments = sys.argv
     del arguments[0]
+
+    if "-r" in arguments or "--noremix" in arguments:
+        print 'Remixes will not be included in this search.'
+        include_remixes = False
+
+    arguments = [a for a in arguments if not a in possible_arguments];
+
     search_term = ' '.join(arguments)
 
     if len(search_term) == 0:
         print 'Hey bro, we need a search term here.'
         exit(0)
 
-    print 'Searching for song named "%s".' % search_term
+    print '\nSearching for song named "%s".' % search_term
 
     mp3_skull_url = 'http://mp3skull.com/mp3/%s.html' % search_term
 
@@ -97,7 +115,7 @@ def main():
     for rawSong in raw_songs:
 
         song = Song()
-        result = song.parse_song(rawSong)
+        result = song.parse_song(rawSong, include_remixes)
 
         if result:
             songs.append(song)
