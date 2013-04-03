@@ -107,7 +107,7 @@ def main():
 
     response = request.text
     if response.find('The content was removed due to copyrights owners\' request.') != -1:
-        print 'Content unavailable.  The content was removed\ due to the copyright owners\' request.'
+        print 'Content unavailable.  The content was removed due to the copyright owners\' request.'
         exit(0)
 
     raw_songs = response.split('<div id="song_html"')
