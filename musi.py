@@ -84,6 +84,8 @@ def main():
     if "-r" in arguments or "--noremix" in arguments:
         print 'Remixes will not be included in this search.'
         include_remixes = False
+    else:
+        include_remixes = True
 
     arguments = [a for a in arguments if not a in possible_arguments];
 
